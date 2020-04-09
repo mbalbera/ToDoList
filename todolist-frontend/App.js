@@ -1,4 +1,4 @@
-console.disableYellowBox = true
+// console.disableYellowBox = true
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import LoggedOut from './components/LoggedOut'
@@ -19,26 +19,43 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
      dayOfWk:'0',
    }
 
+  //  addTask =(event)=>{
+  //    fetch("http://localhost:3000/api/v1/tasks/new", {
+  //      method: 'POST',
+  //      body: JSON.stringify({
+  //         user: this.state.user,
+  //         text: event.text, 
+  //         completed: event.completed, 
+  //         time: event.time, 
+  //      }),
+  //      headers: {
+  //        'Content-Type': 'application/json'
+  //      }
+  //    })
+  //      .then(resp => resp.json())
+  //      .then(data => { console.log(data)}
+  //  }
+
 
    loggedIn =()=>{
      return(
       <View style={styles.fullcontainer}>
          <View style={styles.topContainer}>
            <View style={{width: '50%', justifyContent: 'center', alignItems: 'center' , }}>
-             <Text>{`${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
+             <Text style={styles.dateText}>{`${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
            </View>
            <View style={{width:'25%'}}/>
-           <TouchableOpacity style={{ width: '25%', }} onPress={() => console.log('pressed')}>
-             <View style={styles.circle}>
-               <View style={styles.button}>
-                  <Text style={styles.buttonText}>+</Text>
-               </View>
-             </View>
-           </TouchableOpacity>
-         </View>
-         <View style={{width:'100%', margin:0 ,height:'90%', alignContent:'space-between', }}>
-            <TaskList/>
-         </View>
+            <TouchableOpacity style={{ width: '5%', }} onPress={() => console.log('pressed')}>
+              <View style={styles.circle}>
+                <View style={styles.button}>
+                    <Text style={styles.buttonText}>+</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+          <View style={{width:'100%', margin:0 ,height:'90%', alignContent:'space-between', }}>
+              <TaskList/>
+          </View>
       </View>
      )
    }
@@ -91,6 +108,7 @@ const styles = StyleSheet.create({
   },
   dateText:{
     // fontFamily: 'helvetica',
+    zIndex: 100
   },
   circle: {
     width: 50,

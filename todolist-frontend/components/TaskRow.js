@@ -1,44 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-import CircleTransition from 'react-native-expanding-circle-transition' 
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+// import CircleTransition from 'react-native-expanding-circle-transition' 
 
 export default TaskRow = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.splitContainer}>
-                <TouchableOpacity style={{width:'10%'}} onPress={()=>console.log('completed')}>
-                    {/* <Text>
-                        {props.completed? 'x' : 'o'}
-                    </Text> */}
-                    <CircleTransition
-                        color='rgb(213,213,213)'
-                        expand
-                        duration={500}
-                    />
+                <TouchableOpacity style={styles.checkboxContainer} onPress={()=>console.log('completed')}>
+                 
+                    {props.completed ? <Image style={styles.pics} source={require('../assets/blueCheck.png')}/> : <Text>O</Text> }
+                    
                 </TouchableOpacity>
-                <View style={{width:'70%',alignContent:'center'}}>
+                <View style={styles.textContainer}>
                     <View>
-                        <Text style={ props.completed ? styles.complete : styles.incomplete}>
+                        <Text style={ props.completed ? styles.completedText : styles.incompleteText}>
                             {props.text}
                         </Text>
                     </View>
-                    <View
-                        style={{
-                            borderBottomColor: 'rgb(213,213,213)',
-                            borderBottomWidth: 1,
-                        }}>
-                    </View>
+                        {props.completed ? <View style={styles.completeLine}/> : <View style={styles.incompleteLine}>
+                    </View>}
                 </View>
-                <View style={{width:'20%'}}>
-                    <Text>
+                <View style={styles.timeContainer}>
+                    <Text style={props.completed ? styles.completedText : styles.incompleteText}>
                         {props.time}
                     </Text>
-                <View
-                    style={{
-                        borderBottomColor: 'rgb(213,213,213)',
-                        borderBottomWidth: 1,
-                    }}>
-                </View>
+                    <View>
+                        {props.completed ? <View style={styles.completeLine}/> : <View style={styles.incompleteLine}/>}
+                    </View>
                 </View>
             </View>
         </View>
@@ -56,13 +44,43 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: "space-between",
     },
-    complete:{
-        textDecorationLine: 'line-through', 
-        textDecorationStyle: 'solid'
+    completedText:{
+        // textDecorationLine: 'line-through', 
+        textDecorationStyle: 'solid',
+        color: 'rgb(213,213,213)',
+        zIndex: 0,
     },
-    incomplete:{
+    incompleteText:{
         // textDecorationLine: 'underline', 
-        textDecorationStyle: 'solid'
+        textDecorationStyle: 'solid',
+        zIndex: 0,
 
+    },
+    incompleteLine:{
+        borderBottomColor: 'rgb(213,213,213)',
+        borderBottomWidth: 1,
+        zIndex: 5
+    },
+    completeLine:{
+        borderBottomColor: 'rgb(213,213,213)',
+        borderBottomWidth: 1,
+        zIndex: 5,
+        margin: -8
+    },
+    textContainer:{
+        width: '70%', 
+        alignContent: 'center'
+    },
+    timeContainer:{
+         width: '20%',
+    },
+    pics:{
+        height: '50%',
+        width: '50%',
+        alignSelf: 'auto'
+    },
+    checkboxContainer:{
+        width: '10%'
     }
+    
 });
