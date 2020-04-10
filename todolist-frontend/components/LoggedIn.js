@@ -8,6 +8,7 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 
 class LoggedIn extends React.Component{
+
     state={
         date: '01/01/2020',
         month: '01',
@@ -16,6 +17,7 @@ class LoggedIn extends React.Component{
         min: '00',
         dayOfWk: '0',
     }
+
     componentDidMount() {
         let date = new Date().getDate(); //Current Date
         let month = new Date().getMonth() + 1; //Current Month
@@ -32,6 +34,35 @@ class LoggedIn extends React.Component{
             dayOfWk
         })
     }
+
+    addTask =(tk)=>{
+        fetch("http://localhost:3000/api/v1/tasks/new", {
+            method: 'POST',
+            body: JSON.stringify({
+                task: {
+                    text: 'string',
+                    time: 'string',
+                    user_id: user.id
+
+                }
+            }
+            ),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(data => {
+                // console.log(data);
+
+                clearHighScores(document.querySelector("#allHighScores > ol"))
+                getHighestScores()
+                clearHighScores(document.querySelector("#yourHighScores > ol"))
+                fetchYourScores(data.user.name)
+
+            })
+    }
+
     render(){
     return (
         <View style={styles.fullcontainer}>
