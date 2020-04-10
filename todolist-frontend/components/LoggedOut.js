@@ -1,19 +1,41 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, TouchableOpacity } from 'react-native';
 
-export default LoggedOut = ()=>{
-    return(
-        <View style={styles.container}>
-            <Text>Log In</Text>
-            <TextInput  autoCapitalize={'words'} placeholder={'Name'} ></TextInput>
-        </View>
-    )
+class LoggedOut extends React.Component{
+    state = {
+        name: ""
+    }
+    setName = (event) => {
+        console.log('target= ', event.nativeEvent.text)
+        this.setState({ name: event.nativeEvent.text})
+    }
+    render(){
+        return(
+            <View style={styles.container}>
+                <View style={{marginBottom:100}}>
+                    <Text style={{fontSize: 26}}>To Do List!</Text>
+                </View>
+                <View style={{ marginBottom: 25 }}>
+                    <Text style={{ fontSize: 20 }}>Log In</Text>
+                </View>
+                <View style={{ marginBottom: 25, backgroundColor: 'rgb(214,216,221)', paddingVertical: 6, paddingHorizontal: 40, borderRadius:12 }}>
+                    <TextInput  autoCapitalize={'words'} placeholder={'Name'} onChange={(e)=>this.setName(e)}></TextInput>
+                </View >
+                <View style={{ marginBottom: 300 }}>
+                    <TouchableOpacity style={{ fontSize: 26, backgroundColor:'rgb(109, 134, 229)', padding: 10, borderRadius: 10 }}onPress={()=>this.props.login(this.state.name)}>
+                        <Text style={{color:'rgb(17,17,17)'}}>enter</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
 }
+
+export default LoggedOut
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
         justifyContent: 'center',
+        alignItems: 'center',
     },
 });

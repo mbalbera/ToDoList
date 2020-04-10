@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import LoggedOut from './components/LoggedOut'
-import TaskList from './components/TaskList'
+import LoggedIn from './components/LoggedIn'
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -10,78 +10,29 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
  class App extends React.Component {
    state = {
-     user: true,
-     date: '01/01/2020',
-     month: '01',
-     year:'2020',
-     hours:'00',
-     min:'00',
-     dayOfWk:'0',
+     user: false,
+     tasks: []
    }
 
-  //  addTask =(event)=>{
-  //    fetch("http://localhost:3000/api/v1/tasks/new", {
-  //      method: 'POST',
-  //      body: JSON.stringify({
-  //         user: this.state.user,
-  //         text: event.text, 
-  //         completed: event.completed, 
-  //         time: event.time, 
-  //      }),
-  //      headers: {
-  //        'Content-Type': 'application/json'
-  //      }
-  //    })
-  //      .then(resp => resp.json())
-  //      .then(data => { console.log(data)}
-  //  }
+  login=(nameInput)=>{
+    console.log('loggin in')
+    fetch('http://localhost:3000/api/v1/users/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: nameInput })
+    })
+      .then(resp => resp.json())
+      .then(d => this.parseData(d))
+  }
 
-
-   loggedIn =()=>{
-     return(
-      <View style={styles.fullcontainer}>
-         <View style={styles.topContainer}>
-           <View style={{width: '50%', justifyContent: 'center', alignItems: 'center' , }}>
-             <Text style={styles.dateText}>{`${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
-           </View>
-           <View style={{width:'25%'}}/>
-            <TouchableOpacity style={{ width: '5%', }} onPress={() => console.log('pressed')}>
-              <View style={styles.circle}>
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>+</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
-          </View>
-          <View style={{width:'100%', margin:0 ,height:'90%', alignContent:'space-between', }}>
-              <TaskList/>
-          </View>
-      </View>
-     )
-   }
-
-   componentDidMount(){
-     let date = new Date().getDate(); //Current Date
-     let month = new Date().getMonth() + 1; //Current Month
-     let year = new Date().getFullYear(); //Current Year
-     let hours = new Date().getHours(); //Current Hours
-     let min = new Date().getMinutes(); //Current Minutes
-     let dayOfWk = new Date().getDay(); //Current Day of the Week
-     this.setState({
-       date,
-       month,
-       year,
-       hours,
-       min,
-       dayOfWk
-     })
-   }
+  parseData = (d)=>{
+    this.setState({user:d.user, tasks:d.tasks})
+  }
 
   render(){
     return (
       <View style={styles.container}>
-        
-        {this.state.user ? this.loggedIn():<LoggedOut/>}
+        {this.state.user ? <LoggedIn user={this.state.user} tasks={this.state.tasks}/>:<LoggedOut login={this.login}/>}
       </View>
     );
   }
@@ -89,43 +40,11 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 
 export default App
 const styles = StyleSheet.create({
-  fullcontainer: {
-    // backgroundColor: 'rgb(17,17,17)',
-    // justifyContent: 'center',
-    paddingTop: '5%',
-    flex: 1,
-    width:'100%'
-  },
   container: {
     // backgroundColor: 'rgb(17,17,17)',
     // justifyContent: 'center',
     flex: 1,
     width: '100%'
   },
-  topContainer:{
-    paddingVertical: '10%',
-    flexDirection:'row'
-  },
-  dateText:{
-    // fontFamily: 'helvetica',
-    zIndex: 100
-  },
-  circle: {
-    width: 50,
-    height: 50,
-    borderRadius: 50 / 2,
-    backgroundColor: 'rgb(109, 134, 229)',
-    zIndex: 1
-  },
-  button: {
-    flex: 1,
-    justifyContent: 'space-around',
-    alignItems: 'center'
-  },
-
-  buttonText:{
-    color: 'rgb(255,255,255)',
-    fontSize: 40,
-  }
-
+  
 });
