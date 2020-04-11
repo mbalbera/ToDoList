@@ -16,8 +16,9 @@ This is a React Native - Ruby on Rails project built for the matter project stud
 
 ## Things left to complete
 
-* animation 
+* connect tests
 * change hold to delete task, to swipe to delete task (add confirmation)
+* animation
 * fix hidden text in hours/minutes section of creating a new task
 
 ## Backend Architecture
