@@ -4,7 +4,6 @@ import TaskRow from './TaskRow'
 import { render } from 'react-dom';
 
 const TaskList =(props)=> {
-    // console.log('TL props', props)
     return (
         <View style={styles.container}>
             <View>

@@ -45,7 +45,6 @@ class LoggedIn extends React.Component{
     }
 
     render(){
-        console.log('Logged In props', this.props )
         return (
             <View style={styles.fullcontainer}>
                 <View style={styles.topContainer}>

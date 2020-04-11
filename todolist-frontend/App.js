@@ -15,7 +15,6 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
    }
 
   login = (nameInput) => {
-    console.log('loggin in')
     fetch('http://localhost:3000/api/v1/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

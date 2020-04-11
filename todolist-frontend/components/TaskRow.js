@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 export default TaskRow = (props) => {
-    console.log('TR prop id: ', props)
     return (
         <View style={styles.container} >
             <View style={styles.splitContainer}>
@@ -24,7 +23,7 @@ export default TaskRow = (props) => {
                         {props.time}
                     </Text>
                     <View>
-                        {props.completed ? <View style={styles.completeLineTime}/> : <View style={styles.incompleteLineTime}/>}
+                        {props.completed ? <View style={styles.completeTimeUnderline}/> : <View style={styles.incompleteTimeUnderline}/>}
                     </View>
                 </View>
             </View>
@@ -65,11 +64,14 @@ const styles = StyleSheet.create({
         color: 'rgb(213,213,213)',
         zIndex: 0,
         fontSize: 10,
+        marginTop: 0
+        
     },
     incompleteTimeText: {
         // textDecorationLine: 'underline', 
         textDecorationStyle: 'solid',
         zIndex: 0,
+        marginTop: 20
 
     },
       incompleteTimeText: {
@@ -90,13 +92,13 @@ const styles = StyleSheet.create({
         zIndex: 5,
         margin: -8
     },
-    completeLineTime:{
+    completeTimeUnderline:{
         borderBottomColor: 'rgb(213,213,213)',
         borderBottomWidth: 1,
         zIndex: 5,
         margin: -3
     },
-    incompleteLineTime: {
+    incompleteTimeUnderline: {
         borderBottomColor: 'rgb(213,213,213)',
         borderBottomWidth: 1,
         zIndex: 5,
