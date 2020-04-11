@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import TaskList from './TaskList'
+import NewTaskModal from './NewTaskModal'
 
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -16,6 +17,14 @@ class LoggedIn extends React.Component{
         hours: '00',
         min: '00',
         dayOfWk: '0',
+        modalVisible: false
+    }
+
+    showModal = () => {
+        const swtch = !this.state.modalVisible
+        this.setState({
+            modalVisible: swtch
+        })
     }
 
     componentDidMount() {
@@ -35,58 +44,32 @@ class LoggedIn extends React.Component{
         })
     }
 
-    addTask =(tk)=>{
-        fetch("http://localhost:3000/api/v1/tasks/new", {
-            method: 'POST',
-            body: JSON.stringify({
-                task: {
-                    text: 'string',
-                    time: 'string',
-                    user_id: user.id
-
-                }
-            }
-            ),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(resp => resp.json())
-            .then(data => {
-                // console.log(data);
-
-                clearHighScores(document.querySelector("#allHighScores > ol"))
-                getHighestScores()
-                clearHighScores(document.querySelector("#yourHighScores > ol"))
-                fetchYourScores(data.user.name)
-
-            })
-    }
-
     render(){
-    return (
-        <View style={styles.fullcontainer}>
-            <View style={styles.topContainer}>
-                <View style={{ width: '50%', marginTop: '13.5%', marginLeft: '5%' }}>
+        // console.log( 'logged in tasks',this.props.tasks)
+        return (
+            <View style={styles.fullcontainer}>
+                <View style={styles.topContainer}>
+                    <View style={{ width: '50%', marginTop: '13.5%', marginLeft: '5%' }}>
+                        <View style={styles.innerTop}>
+                            <Text style={styles.dateText} numberOfLines={1} >{`  ${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
+                        </View>
+                    </View>
+                    <View style={{ width: '25%' }} />
                     <View style={styles.innerTop}>
-                        <Text style={styles.dateText} numberOfLines={1} >{`  ${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
+                        <TouchableOpacity style={{ width: '5%', paddingBottom: '3%' }} onPress={() => this.showModal()}>
+                            <View style={styles.circle}>
+                                <View style={styles.button}>
+                                    <Text style={styles.buttonText}>+</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
-                <View style={{ width: '25%' }} />
-                <View style={styles.innerTop}>
-                    <TouchableOpacity style={{ width: '5%', paddingBottom: '3%' }} onPress={() => console.log('pressed')}>
-                        <View style={styles.circle}>
-                            <View style={styles.button}>
-                                <Text style={styles.buttonText}>+</Text>
-                            </View>
-                        </View>
-                    </TouchableOpacity>
+                <View style={{ width: '100%', margin: 0, height: '90%', alignContent: 'space-between', }}>
+                    <TaskList tasks={this.props.tasks}/>
                 </View>
+                {this.state.modalVisible ? <NewTaskModal updateTasks={this.props.updateTasks} user={this.props.user} hideModal={this.showModal} addTaskToScreen={this.props.addTaskToScreen} visible={this.state.modalVisible} /> : null}
             </View>
-            <View style={{ width: '100%', margin: 0, height: '90%', alignContent: 'space-between', }}>
-                <TaskList tasks={this.props.tasks}/>
-            </View>
-        </View>
     )}
 }
 export default LoggedIn
@@ -125,7 +108,9 @@ const styles = StyleSheet.create({
     button: {
         flex: 1,
         justifyContent: 'space-around',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingLeft: 2,
+        paddingBottom: 4
     },
 
     buttonText: {

@@ -4588,6 +4588,13 @@ react-mixin@^2.0.2:
     object-assign "^2.0.0"
     smart-mixin "^1.2.0"
 
+react-native-24h-timepicker@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-24h-timepicker/-/react-native-24h-timepicker-1.1.0.tgz#b95a86339c0bd7261216956d16c3f41b7bbfb8dd"
+  integrity sha512-rnOHWmKcSbbdpYBVl2MxkQY7IU83f/5K6NB8iq4nmWdq8WfHklnkfvfpjnga8uY6sqLDAK11j+dQHo0XVK+QIg==
+  dependencies:
+    react-native-raw-bottom-sheet "^1.0.0"
+
 react-native-circle-button@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/react-native-circle-button/-/react-native-circle-button-1.0.9.tgz#bf9362b71d4ebd8cdd6e36cda1ee9b133d457964"
@@ -4606,6 +4613,18 @@ react-native-expo-viewport-units@^0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/react-native-expo-viewport-units/-/react-native-expo-viewport-units-0.0.8.tgz#13d9bcb3e95abcc55f800cfa5f3e4b571860e726"
   integrity sha512-duAEaoVF41puhXhpI1BuDFc2AMBqfWT2S74EJqaQ5dnuZVhsP++AExJwVo7/2/lHmb6+gYWGyBZOxxPCMWe+Ew==
+
+react-native-half-modal@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-half-modal/-/react-native-half-modal-0.2.5.tgz#8bd48751e280a6324699f5a90685cafdf85aa875"
+  integrity sha512-KOwQEfccHyykl+T3EwBK3Yy+VkpaJ26mRu67QwDPqR5hKp5h0iFGg+sEs3CLS6+vxDOzp/ChwhTJttpI25B7ng==
+
+react-native-raw-bottom-sheet@^1.0.0:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-raw-bottom-sheet/-/react-native-raw-bottom-sheet-1.1.4.tgz#1f79bd1bf5b74fec3c9a97b108a5a527d5157318"
+  integrity sha512-rn9KZuxWLE/EwxuoVzVBrzuTTcUZyhUfOOmAXScuGc90W6sf2NgM38vx6+SkZ0pqWgXmAKnUALmjE3kdNnxAFQ==
+  dependencies:
+    prop-types "^15.6.2"
 
 react-native-swipe-gestures@^1.0.5:
   version "1.0.5"

@@ -6,14 +6,13 @@ class LoggedOut extends React.Component{
         name: ""
     }
     setName = (event) => {
-        console.log('target= ', event.nativeEvent.text)
         this.setState({ name: event.nativeEvent.text})
     }
     render(){
         return(
             <View style={styles.container}>
                 <View style={{marginBottom:100}}>
-                    <Text style={{fontSize: 26}}>To Do List!</Text>
+                    <Text style={{fontSize: 26}}>To Do List</Text>
                 </View>
                 <View style={{ marginBottom: 25 }}>
                     <Text style={{ fontSize: 20 }}>Log In</Text>
@@ -23,7 +22,7 @@ class LoggedOut extends React.Component{
                 </View >
                 <View style={{ marginBottom: 300 }}>
                     <TouchableOpacity style={{ fontSize: 26, backgroundColor:'rgb(109, 134, 229)', padding: 10, borderRadius: 10 }}onPress={()=>this.props.login(this.state.name)}>
-                        <Text style={{color:'rgb(17,17,17)'}}>enter</Text>
+                        <Text style={{color:'rgb(17,17,17)'}}>Submit</Text>
                     </TouchableOpacity>
                 </View>
             </View>

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-// import GestureRecognizer, { swipeDirections } from 'react-native-swipe-gestures';
 
 export default TaskRow = (props) => {
     // console.log('TR props: ', props)
@@ -9,6 +8,7 @@ export default TaskRow = (props) => {
             <View style={styles.splitContainer}>
                 <TouchableOpacity style={styles.checkboxContainer} onPress={(props)=>props.completeTask(props)}>
                     {props.completed ? <Image style={styles.pics} source={require('../assets/blueCheck.png')}/> : <Text style={styles.completedText}>O</Text> }
+                    
                 </TouchableOpacity>
                 <View style={styles.textContainer}>
                     <View>
@@ -16,7 +16,7 @@ export default TaskRow = (props) => {
                             {props.text}
                         </Text>
                     </View>
-                        {props.completed ? <View style={styles.completeLine}/> : <View style={styles.incompleteLine}>
+                        {props.completed ? <View style={styles.completeTextUnderline}/> : <View style={styles.incompleteTextUnderline}>
                     </View>}
                 </View>
                 <View style={styles.timeContainer}>
@@ -24,7 +24,7 @@ export default TaskRow = (props) => {
                         {props.time}
                     </Text>
                     <View>
-                        {props.completed ? <View style={styles.completeLineTime}/> : <View style={styles.incompleteLine}/>}
+                        {props.completed ? <View style={styles.completeLineTime}/> : <View style={styles.incompleteLineTime}/>}
                     </View>
                 </View>
             </View>
@@ -44,6 +44,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
     },
     completedText:{
+        color: 'rgb(213,213,213)',
+    },
+    completedLineText:{
         // textDecorationLine: 'line-through', 
         textDecorationStyle: 'solid',
         color: 'rgb(213,213,213)',
@@ -61,7 +64,7 @@ const styles = StyleSheet.create({
         textDecorationStyle: 'solid',
         color: 'rgb(213,213,213)',
         zIndex: 0,
-        fontSize: 10
+        fontSize: 10,
     },
     incompleteTimeText: {
         // textDecorationLine: 'underline', 
@@ -69,12 +72,19 @@ const styles = StyleSheet.create({
         zIndex: 0,
 
     },
-    incompleteLine:{
+      incompleteTimeText: {
+        // textDecorationLine: 'underline', 
+        textDecorationStyle: 'solid',
+        zIndex: 0,
+        fontSize: 10
+
+    },
+    incompleteTextUnderline:{
         borderBottomColor: 'rgb(213,213,213)',
         borderBottomWidth: 1,
         zIndex: 5
     },
-    completeLine:{
+    completeTextUnderline:{
         borderBottomColor: 'rgb(213,213,213)',
         borderBottomWidth: 1,
         zIndex: 5,
@@ -85,6 +95,12 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         zIndex: 5,
         margin: -3
+    },
+    incompleteLineTime: {
+        borderBottomColor: 'rgb(213,213,213)',
+        borderBottomWidth: 1,
+        zIndex: 5,
+        marginTop: 5
     },
     textContainer:{
         width: '70%', 
