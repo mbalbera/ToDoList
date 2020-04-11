@@ -18,6 +18,7 @@ This is a React Native - Ruby on Rails project built for the matter project stud
 
 * animation 
 * change hold to delete task, to swipe to delete task (add confirmation)
+* fix hidden text in hours/minutes section of creating a new task
 
 ## Backend Architecture
 
@@ -28,3 +29,9 @@ I used two tables for this project, a Users table and a Tasks table. Although I 
 
 Only using two tests for an entire application was a tough task. I decided to test the login function on the backend to make sure the proper data was being served to the front end. On the frontend I used a snapshot test in order to make sure the app displays as intended. The reason I picked these two tests is because if both of these tests pass you know you are getting the right information AND the right UX/UI. As this is a one screen application it made sense to me to only test the Logged In component which displays the original screen. 
 
+## CRUD Functionality
+
+* Create - click the blue circle with the plus sign to get the opportunity to create a new task
+* Read - log in to see all your tasks
+* Update - Check off a task to change its *completedness* attribute
+* Delete - Hold down on a task's Text and watch it disappear 
