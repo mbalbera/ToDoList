@@ -15,7 +15,7 @@ const TaskList =(props)=> {
                     <SafeAreaView style={styles.tasksContainer}>
                         <FlatList
                             data={props.tasks}
-                            renderItem={({ item }) => <TaskRow deleteTask={props.deleteTask} completeTask={props.completeTask} id={item.id} text={item.text} completed={item.completed} time={item.time} />}
+                            renderItem={({ item }) => <TaskRow completeTask={props.completeTask} deleteTask={props.deleteTask} completeTask={props.completeTask} id={item.id} text={item.text} completed={item.completed} time={item.time} />}
                             keyExtractor={item => item.id}
                             contentContainerStyle={{ flex: 1, flexDirection: 'column', height: '100%', width: '100%' }}
                         />

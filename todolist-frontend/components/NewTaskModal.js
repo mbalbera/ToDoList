@@ -44,7 +44,7 @@ class NewTaskModal extends React.Component {
             }
         })
             .then(resp => resp.json())
-            .then(data=>this.props.updateTasks(data, 'add'))
+            .then(data=>this.props.parseData(data, 'add'))
             .then(this.props.hideModal())
             .then(console.log(this.props.user))
     }

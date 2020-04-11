@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post '/users/login', to: 'users#login'
       post 'tasks/new', :to => 'tasks#create'
       delete 'tasks/delete/:id', :to => 'tasks#destroy'
+      patch 'tasks/complete/:id', :to => 'tasks#complete'
     end
   end
 end

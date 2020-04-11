@@ -51,7 +51,7 @@ class LoggedIn extends React.Component{
                 <View style={styles.topContainer}>
                     <View style={{ width: '50%', marginTop: '13.5%', marginLeft: '5%' }}>
                         <View style={styles.innerTop}>
-                            <Text style={styles.dateText} numberOfLines={1} >{`  ${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month]}`}</Text>
+                            <Text style={styles.dateText} numberOfLines={1} >{`  ${days[this.state.dayOfWk]}, ${this.state.date} ${months[this.state.month -1]}`}</Text>
                         </View>
                     </View>
                     <View style={{ width: '25%' }} />
@@ -66,9 +66,9 @@ class LoggedIn extends React.Component{
                     </View>
                 </View>
                 <View style={{ width: '100%', margin: 0, height: '90%', alignContent: 'space-between', }}>
-                    <TaskList deleteTask={this.props.deleteTask}  tasks={this.props.tasks}/>
+                    <TaskList deleteTask={this.props.deleteTask} completeTask={this.props.completeTask}  tasks={this.props.tasks}/>
                 </View>
-                {this.state.modalVisible ? <NewTaskModal updateTasks={this.props.updateTasks} user={this.props.user} hideModal={this.showModal} addTaskToScreen={this.props.addTaskToScreen} visible={this.state.modalVisible} /> : null}
+                {this.state.modalVisible ? <NewTaskModal parseData={this.props.parseData} user={this.props.user} hideModal={this.showModal} addTaskToScreen={this.props.addTaskToScreen} visible={this.state.modalVisible} /> : null}
             </View>
     )}
 }

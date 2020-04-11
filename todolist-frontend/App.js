@@ -45,10 +45,35 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
      this.setState({ tasks: data })
    }
 
+   completeTask=(id)=>{
+     fetch(`http://localhost:3000/api/v1/tasks/complete/${id}`, {
+       method: 'PATCH'
+     }).then(response =>
+       response.json().then(json => {
+         return json;
+       })
+     );
+     const data = []
+     this.state.tasks.forEach(row => {
+        if(row.id !== id){
+          data.push(row)
+        }else{
+          data.push({ 
+            text: row.text,
+            id: row.id,
+            completed: !row.completed,
+            time: row.time
+          })
+        }
+      })
+     this.setState({ tasks: data })
+   }
+
+
   render(){
     return (
       <View style={styles.container}>
-        {this.state.user ? <LoggedIn deleteTask={this.deleteTask} updateTasks={this.parseData} addTaskToScreen={this.addTaskToScreen} user={this.state.user} tasks={this.state.tasks}/>:<LoggedOut login={this.login}/>}
+        {this.state.user ? <LoggedIn completeTask={this.completeTask} deleteTask={this.deleteTask} parseData={this.parseData} addTaskToScreen={this.addTaskToScreen} user={this.state.user} tasks={this.state.tasks}/>:<LoggedOut login={this.login}/>}
       </View>
     );
   }

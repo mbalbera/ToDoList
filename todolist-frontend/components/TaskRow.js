@@ -6,7 +6,7 @@ export default TaskRow = (props) => {
     return (
         <View style={styles.container} >
             <View style={styles.splitContainer}>
-                <TouchableOpacity style={styles.checkboxContainer} onPress={(props)=>props.completeTask(props)}>
+                <TouchableOpacity style={styles.checkboxContainer} onPress={()=>props.completeTask(props.id)}>
                     {props.completed ? <Image style={styles.pics} source={require('../assets/blueCheck.png')}/> : <Text style={styles.completedText}>O</Text> }
                     
                 </TouchableOpacity>
