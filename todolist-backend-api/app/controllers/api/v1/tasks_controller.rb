@@ -21,6 +21,7 @@ class Api::V1::TasksController < ApplicationController
     end
 
     def destroy
+      # byebug
         task = Task.find(params[:id])
         task.delete
     end

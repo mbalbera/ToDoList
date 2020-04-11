@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 
 export default TaskRow = (props) => {
-    // console.log('TR props: ', props)
+    console.log('TR prop id: ', props)
     return (
         <View style={styles.container} >
             <View style={styles.splitContainer}>
@@ -12,7 +12,7 @@ export default TaskRow = (props) => {
                 </TouchableOpacity>
                 <View style={styles.textContainer}>
                     <View>
-                        <Text ellipsizeMode={'tail'} numberOfLines={1} style={ props.completed ? styles.completedText : styles.incompleteText}>
+                        <Text ellipsizeMode={'tail'} numberOfLines={1} onLongPress={()=>props.deleteTask(props.id)} style={ props.completed ? styles.completedText : styles.incompleteText}>
                             {props.text}
                         </Text>
                     </View>

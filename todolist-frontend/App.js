@@ -33,11 +33,22 @@ const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
     this.setState({tasks})
   }
 
+   deleteTask = (id) => {
+     fetch(`http://localhost:3000/api/v1/tasks/delete/${id}`, {
+         method: 'DELETE'
+     }).then(response =>
+         response.json().then(json => {
+             return json;
+         })
+     );
+     const data = this.state.tasks.filter(row => row.id !== id)
+     this.setState({ tasks: data })
+   }
+
   render(){
-    // console.log('App state tasks, last', this.state.tasks[this.state.tasks.length-1])
     return (
       <View style={styles.container}>
-        {this.state.user ? <LoggedIn updateTasks={this.parseData} addTaskToScreen={this.addTaskToScreen} user={this.state.user} tasks={this.state.tasks}/>:<LoggedOut login={this.login}/>}
+        {this.state.user ? <LoggedIn deleteTask={this.deleteTask} updateTasks={this.parseData} addTaskToScreen={this.addTaskToScreen} user={this.state.user} tasks={this.state.tasks}/>:<LoggedOut login={this.login}/>}
       </View>
     );
   }

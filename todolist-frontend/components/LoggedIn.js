@@ -45,7 +45,7 @@ class LoggedIn extends React.Component{
     }
 
     render(){
-        // console.log( 'logged in tasks',this.props.tasks)
+        console.log('Logged In props', this.props )
         return (
             <View style={styles.fullcontainer}>
                 <View style={styles.topContainer}>
@@ -66,7 +66,7 @@ class LoggedIn extends React.Component{
                     </View>
                 </View>
                 <View style={{ width: '100%', margin: 0, height: '90%', alignContent: 'space-between', }}>
-                    <TaskList tasks={this.props.tasks}/>
+                    <TaskList deleteTask={this.props.deleteTask}  tasks={this.props.tasks}/>
                 </View>
                 {this.state.modalVisible ? <NewTaskModal updateTasks={this.props.updateTasks} user={this.props.user} hideModal={this.showModal} addTaskToScreen={this.props.addTaskToScreen} visible={this.state.modalVisible} /> : null}
             </View>
